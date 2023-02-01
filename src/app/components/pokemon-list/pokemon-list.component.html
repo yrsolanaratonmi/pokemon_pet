@@ -1,0 +1,14 @@
+<div class="container">
+  <div
+    *ngFor="let pokemon of pokemons | slice : startElement : startElement + rows"
+    style="max-height: 200px"
+  >
+    <pokemon-card [pokemon]="pokemon" (clickFunc)="setIndex($event)"></pokemon-card>
+  </div>
+</div>
+
+<p-paginator
+  (onPageChange)="paginate($event)"
+  [rows]="12"
+  [totalRecords]="pokemons.length"
+></p-paginator>
