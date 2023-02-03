@@ -6,7 +6,7 @@ import { AllPokemonsData } from '../dto/allPokemonsData.dto';
 import { SinglePokemonInfo } from '../dto/singlePokemonInfo.dto';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PokemonService {
   constructor(private http: HttpClient) {}
