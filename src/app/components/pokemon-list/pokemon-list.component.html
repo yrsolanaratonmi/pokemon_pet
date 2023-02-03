@@ -1,9 +1,14 @@
 <div class="container">
   <div
     *ngFor="let pokemon of pokemons | slice : startElement : startElement + rows"
-    style="max-height: 200px"
+    style="max-height: 220px"
   >
-    <pokemon-card [pokemon]="pokemon" (clickFunc)="setIndex($event)"></pokemon-card>
+    <pokemon-card
+      [pokemon]="pokemon"
+      [activePokemon]="activePokemon"
+      (clickFunc)="setIndex($event)"
+      (click)="setActive(pokemon.name)"
+    ></pokemon-card>
   </div>
 </div>
 

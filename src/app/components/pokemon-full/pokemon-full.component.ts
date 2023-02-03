@@ -27,7 +27,10 @@ export class PokemonFullComponent implements OnChanges {
       this.pokemonService
         .getSinglePokemon('https://pokeapi.co/api/v2/pokemon/' + this.name)
         .pipe(tap(() => this.ref.markForCheck()))
-        .subscribe((res) => (this.singlePokemon = res));
+        .subscribe((res) => {
+          this.singlePokemon = res;
+          console.log(res);
+        });
     }
   }
 }

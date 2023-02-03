@@ -28,6 +28,8 @@ export class PokemonListComponent implements OnInit {
 
   public rows: number = 12;
 
+  public activePokemon: string = '';
+
   @Output() clickFunc = new EventEmitter<string>();
 
   ngOnInit(): void {
@@ -56,5 +58,9 @@ export class PokemonListComponent implements OnInit {
 
   public setIndex(name: string) {
     this.clickFunc.emit(name);
+  }
+
+  public setActive(name: string) {
+    this.activePokemon = name;
   }
 }

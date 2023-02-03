@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 
 @Component({
@@ -6,9 +13,12 @@ import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class PokemonCardComponent {
   @Input() pokemon: SinglePokemonInfo;
+
+  @Input() activePokemon: string;
 
   @Output() clickFunc = new EventEmitter<string>();
 

@@ -1,1 +1,29 @@
-<div></div>
+<p-card
+  *ngIf="singlePokemon"
+  [header]="singlePokemon.name | upperCaseLetter"
+  [style]="{ width: '17rem', 'margin-bottom': '7em', padding: '1rem' }"
+  class="container"
+>
+  <ng-template pTemplate="header">
+    <img
+      alt="Card"
+      [src]="singlePokemon.sprites.front_default"
+      [style]="{ width: '100px' }"
+      *ngIf="singlePokemon.sprites.front_default"
+    />
+    <img
+      alt="Card"
+      [src]="'https://js-pokedex-virid.vercel.app/src/no-pokemon-selected-image.png'"
+      [style]="{ width: '70px' }"
+      *ngIf="!singlePokemon.sprites.front_default"
+    />
+  </ng-template>
+  <div class="container">
+    <div *ngFor="let ability of singlePokemon.abilities">
+      <p-chip
+        [label]="ability.ability.name | upperCaseLetter"
+        styleClass="mr-2 custom-color"
+      ></p-chip>
+    </div>
+  </div>
+</p-card>
