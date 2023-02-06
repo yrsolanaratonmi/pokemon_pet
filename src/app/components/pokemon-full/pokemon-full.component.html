@@ -8,19 +8,39 @@
     <carousel [picsArray]="picsArray"></carousel>
   </ng-template>
   <div class="container">
-    <p-tag styleClass="mr-2" icon="pi pi-info-circle" severity="info" [value]="'Abilities:'"></p-tag>
     <div class="abilities">
+      <p-tag
+        styleClass="mr-2"
+        icon="pi pi-info-circle"
+        severity="info"
+        [value]="'Abilities:'"
+      ></p-tag>
       <div
         *ngFor="let ability of singlePokemon.abilities"
         style="display: flex; align-items: center"
       >
         <div>
-          <p-tag styleClass="mr-2" severity="success" [value]="ability.ability.name"></p-tag>
+          <p-tag styleClass="mr-2" severity="success" [value]="ability.ability.name | upperCaseLetter"></p-tag>
         </div>
       </div>
     </div>
-    <p-tag styleClass="mr-2" icon="pi pi-info-circle" severity="info" [value]="'Exp:'"></p-tag>
-        <p-tag styleClass="mr-2" severity="success" [value]="singlePokemon.base_experience?.toString() || 'pizda'"></p-tag>
-
+    <div class="experience">
+      <p-tag styleClass="mr-2" icon="pi pi-info-circle" severity="info" [value]="'Exp:'"></p-tag>
+      <p-tag
+        styleClass="mr-2"
+        severity="success"
+        [value]="singlePokemon.base_experience?.toString() || 'pizda'"
+      ></p-tag>
+    </div>
+    <div style="display: flex; gap: 5px">
+      <div class="stat">
+        <h4 class="name">Height</h4>
+        <div class="value">{{ singlePokemon.height + 'm' }}</div>
+      </div>
+      <div class="stat">
+        <h4 class="name">Weight</h4>
+        <div class="value">{{ singlePokemon.weight + 'kg' }}</div>
+      </div>
+    </div>
   </div>
 </p-card>

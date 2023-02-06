@@ -3,9 +3,32 @@
   gap: 10px;
   flex-wrap: wrap;
   position: fixed;
+  flex-direction: column;
   .abilities {
     display: flex;
     gap: 5px;
+  }
+  .experience {
+    display: flex;
+    gap: 10px;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 50%;
+    align-items: center;
+    .value {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgb(241, 241, 241);
+      font-size: 20px;
+      padding: 3px 10px;
+      border: 2px dashed rgb(88, 214, 141);
+      border-radius: 5px;
+    }
   }
 }
 
