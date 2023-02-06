@@ -21,6 +21,8 @@ export class PokemonFullComponent implements OnChanges {
 
   public singlePokemon: SinglePokemonInfo;
 
+  public picsArray: Array<any> = [];
+
   constructor(private pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
 
   ngOnChanges(): void {
@@ -31,7 +33,24 @@ export class PokemonFullComponent implements OnChanges {
         .subscribe((res) => {
           this.singlePokemon = res;
           console.log(res);
+          delete this.singlePokemon.sprites.versions;
+          if (this.picsArray.length !== 0) {
+            this.picsArray = [];
+          }
+          console.log(this.singlePokemon.sprites);
+          this.getValues(this.singlePokemon.sprites);
+          console.log(this.picsArray);
         });
+    }
+  }
+
+  private getValues(smth: any) {
+    for (let key in smth) {
+      if (typeof smth[key] === 'object') {
+        this.getValues(smth[key]);
+      } else {
+        this.picsArray.push(smth[key]);
+      }
     }
   }
 }

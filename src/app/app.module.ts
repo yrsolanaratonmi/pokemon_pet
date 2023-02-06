@@ -11,10 +11,29 @@ import { UpperCasePipe } from './pipes/upper-case.pipe';
 import { ChipModule } from 'primeng/chip';
 import { PaginatorModule } from 'primeng/paginator';
 import { PokemonFullComponent } from './components/pokemon-full/pokemon-full.component';
+import { CarouselModule } from 'primeng/carousel';
+import { CarouselComponent } from './components/pokemon-full/carousel/carousel.component';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
-  declarations: [AppComponent, PokemonListComponent, PokemonCardComponent, UpperCasePipe, PokemonFullComponent],
-  imports: [BrowserModule, HttpClientModule, ButtonModule, CardModule, ChipModule, PaginatorModule],
+  declarations: [
+    AppComponent,
+    PokemonListComponent,
+    PokemonCardComponent,
+    UpperCasePipe,
+    PokemonFullComponent,
+    CarouselComponent,
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    ButtonModule,
+    CardModule,
+    ChipModule,
+    PaginatorModule,
+    CarouselModule,
+    TagModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

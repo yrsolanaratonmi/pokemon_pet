@@ -26,7 +26,7 @@ export class PokemonListComponent implements OnInit {
 
   public startElement: number = 0;
 
-  public rows: number = 12;
+  public rows: number = 9;
 
   public activePokemon: string = '';
 

@@ -1,29 +1,26 @@
 <p-card
   *ngIf="singlePokemon"
   [header]="singlePokemon.name | upperCaseLetter"
-  [style]="{ width: '17rem', 'margin-bottom': '7em', padding: '1rem' }"
+  [style]="{ width: '17rem', 'margin-bottom': '7em', padding: '1rem', height: '90vh' }"
   class="container"
 >
   <ng-template pTemplate="header">
-    <img
-      alt="Card"
-      [src]="singlePokemon.sprites.front_default"
-      [style]="{ width: '100px' }"
-      *ngIf="singlePokemon.sprites.front_default"
-    />
-    <img
-      alt="Card"
-      [src]="'https://js-pokedex-virid.vercel.app/src/no-pokemon-selected-image.png'"
-      [style]="{ width: '70px' }"
-      *ngIf="!singlePokemon.sprites.front_default"
-    />
+    <carousel [picsArray]="picsArray"></carousel>
   </ng-template>
   <div class="container">
-    <div *ngFor="let ability of singlePokemon.abilities">
-      <p-chip
-        [label]="ability.ability.name | upperCaseLetter"
-        styleClass="mr-2 custom-color"
-      ></p-chip>
+    <p-tag styleClass="mr-2" icon="pi pi-info-circle" severity="info" [value]="'Abilities:'"></p-tag>
+    <div class="abilities">
+      <div
+        *ngFor="let ability of singlePokemon.abilities"
+        style="display: flex; align-items: center"
+      >
+        <div>
+          <p-tag styleClass="mr-2" severity="success" [value]="ability.ability.name"></p-tag>
+        </div>
+      </div>
     </div>
+    <p-tag styleClass="mr-2" icon="pi pi-info-circle" severity="info" [value]="'Exp:'"></p-tag>
+        <p-tag styleClass="mr-2" severity="success" [value]="singlePokemon.base_experience?.toString() || 'pizda'"></p-tag>
+
   </div>
 </p-card>

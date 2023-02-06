@@ -1,5 +1,17 @@
 .container {
   display: flex;
-  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
   position: fixed;
+  .abilities {
+    display: flex;
+    gap: 5px;
+  }
+}
+
+:host ::ng-deep .p-card {
+  background: rgb(220, 250, 233);
+  transform: scale(1.05);
+  box-shadow: 0 2px 1px -1px rgb(88, 214, 141), 0 1px 1px 0 rgb(88, 214, 141),
+    0 1px 3px 0 rgb(88, 214, 141), 0 2px 8px 0 rgb(88, 214, 141);
 }

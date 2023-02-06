@@ -1,0 +1,22 @@
+<p-carousel
+  [value]="picsArray"
+  styleClass="custom-carousel"
+  [numVisible]="1"
+  [numScroll]="1"
+  [circular]="true"
+  [showIndicators]="false"
+  [autoplayInterval]="3000"
+>
+  <ng-template let-pic pTemplate="item">
+    <div class="product-item">
+      <div class="product-item-content">
+        <div class="mb-3">
+          <img
+            [src]="pic"
+            class="product-image"
+          />
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
