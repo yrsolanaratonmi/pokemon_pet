@@ -16,6 +16,8 @@ import { CarouselComponent } from './components/pokemon-full/carousel/carousel.c
 import { TagModule } from 'primeng/tag';
 import { PokemonSearchComponent } from './components/pokemon-search/pokemon-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPokemonPipe } from './pipes/filter-pokemon.pipe';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PokemonFullComponent,
     CarouselComponent,
     PokemonSearchComponent,
+    FilterPokemonPipe,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChipModule,
     PaginatorModule,
     CarouselModule,
+    InputTextModule,
     TagModule,
   ],
   providers: [],

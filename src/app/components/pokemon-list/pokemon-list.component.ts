@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { map, tap } from 'rxjs';
+import { map, Subject, tap } from 'rxjs';
 import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
 import { PokemonService } from '../../services/pokemon.service';
@@ -20,13 +20,15 @@ import { UnifiedResponse } from '../../dto/unifiedResponse.dto';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonListComponent implements OnInit {
-  constructor(private pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
+  constructor(public pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
 
   public pokemons: Array<SinglePokemonInfo> = [];
 
   public startElement: number = 0;
 
-  public rows: number = 9;
+  public rows: number = 21;
+
+  public searchValue$: Subject<string>;
 
   public activePokemon: string = '';
 
@@ -48,10 +50,10 @@ export class PokemonListComponent implements OnInit {
         }),
       )
       .subscribe();
+    this.searchValue$ = this.pokemonService.search$;
   }
 
   public paginate(event: any) {
-    console.log(event);
     this.rows = event.rows;
     this.startElement = event.first * event.rows;
   }

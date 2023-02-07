@@ -1,6 +1,6 @@
 <div class="container">
   <div
-    *ngFor="let pokemon of pokemons | slice : startElement : startElement + rows"
+    *ngFor="let pokemon of pokemons | slice : startElement : startElement + rows | filterPokemon : (searchValue$ | async)"
     style="max-height: 145px"
   >
     <pokemon-card
@@ -14,6 +14,6 @@
 
 <p-paginator
   (onPageChange)="paginate($event)"
-  [rows]="9"
+  [rows]="21"
   [totalRecords]="pokemons.length"
 ></p-paginator>

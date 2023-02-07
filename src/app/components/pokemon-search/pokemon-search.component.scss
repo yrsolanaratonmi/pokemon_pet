@@ -1,0 +1,14 @@
+:host ::ng-deep .p-inputtext {
+  width: 857px;
+  margin-left: 20px;
+}
+:host ::ng-deep .pi.pi-search {
+  margin-left: 20px;
+}
+:host ::ng-deep .p-inputtext:enabled:hover {
+border-color: rgb(88, 214, 141);
+}
+:host ::ng-deep .p-inputtext:enabled:focus {
+  box-shadow: 0 0 0 0.2rem rgb(220, 250, 233);
+    border-color: rgb(88, 214, 141);
+}

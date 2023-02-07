@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'pokemon-search',
@@ -8,7 +8,5 @@ import { FormControl, FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonSearchComponent {
-  public searchForm: FormGroup = new FormGroup({
-    inputValue: new FormControl(''),
-  });
+  public pokemonService = inject(PokemonService);
 }
