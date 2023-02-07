@@ -14,6 +14,7 @@ import { PokemonFullComponent } from './components/pokemon-full/pokemon-full.com
 import { CarouselModule } from 'primeng/carousel';
 import { CarouselComponent } from './components/pokemon-full/carousel/carousel.component';
 import { TagModule } from 'primeng/tag';
+import { PokemonSearchComponent } from './components/pokemon-search/pokemon-search.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TagModule } from 'primeng/tag';
     UpperCasePipe,
     PokemonFullComponent,
     CarouselComponent,
+    PokemonSearchComponent,
   ],
   imports: [
     BrowserModule,
