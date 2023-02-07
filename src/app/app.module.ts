@@ -15,6 +15,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { CarouselComponent } from './components/pokemon-full/carousel/carousel.component';
 import { TagModule } from 'primeng/tag';
 import { PokemonSearchComponent } from './components/pokemon-search/pokemon-search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,8 @@ import { PokemonSearchComponent } from './components/pokemon-search/pokemon-sear
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ButtonModule,
     CardModule,
