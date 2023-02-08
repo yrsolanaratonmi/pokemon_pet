@@ -1,6 +1,10 @@
-<div class="container">
+<div class="container" *ngIf="!loader">
   <div
-    *ngFor="let pokemon of pokemons | slice : startElement : startElement + rows | filterPokemon : (searchValue$ | async)"
+    *ngFor="
+      let pokemon of pokemons
+        | slice : startElement : startElement + rows
+        | filterPokemon : (searchValue$ | async)
+    "
     style="max-height: 145px"
   >
     <pokemon-card
@@ -10,6 +14,10 @@
       (click)="setActive(pokemon.name)"
     ></pokemon-card>
   </div>
+</div>
+
+<div class="container" *ngIf="loader">
+  <skeleton *multipleRender="21"></skeleton>
 </div>
 
 <p-paginator
