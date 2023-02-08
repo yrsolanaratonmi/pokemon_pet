@@ -9,4 +9,8 @@ import { PokemonService } from '../../services/pokemon.service';
 })
 export class PokemonSearchComponent {
   public pokemonService = inject(PokemonService);
+
+  public sendSearch(value: string) {
+    this.pokemonService.setSearch(value);
+  }
 }

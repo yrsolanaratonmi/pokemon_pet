@@ -5,5 +5,5 @@ module.exports = {
   singleQuote: true,
   bracketSpacing: true,
   printWidth: 100,
-  endOfLine:"auto"
+  endOfLine:"auto",
 };

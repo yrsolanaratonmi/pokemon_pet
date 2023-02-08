@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { map, Subject, tap } from 'rxjs';
+import { debounce, map, Observable, tap, timer } from 'rxjs';
 import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
 import { PokemonService } from '../../services/pokemon.service';
@@ -28,7 +28,7 @@ export class PokemonListComponent implements OnInit {
 
   public rows: number = 21;
 
-  public searchValue$: Subject<string>;
+  public searchValue$: Observable<string>;
 
   public activePokemon: string = '';
 
@@ -50,7 +50,7 @@ export class PokemonListComponent implements OnInit {
         }),
       )
       .subscribe();
-    this.searchValue$ = this.pokemonService.search$;
+    this.searchValue$ = this.pokemonService.search$.pipe(debounce(() => timer(1000)));
   }
 
   public paginate(event: any) {
