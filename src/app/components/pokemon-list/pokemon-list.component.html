@@ -17,7 +17,7 @@
 </div>
 
 <div class="container" *ngIf="loader">
-  <skeleton *multipleRender="21"></skeleton>
+  <ng-container *ngTemplateOutlet="skeleton"></ng-container>
 </div>
 
 <p-paginator
@@ -25,3 +25,10 @@
   [rows]="21"
   [totalRecords]="pokemons.length"
 ></p-paginator>
+
+<ng-template #skeleton>
+  <div style="display: flex; flex-direction: column" *multipleRender="21">
+    <p-skeleton width="70px" height="70px" borderRadius="50%" styleClass="round"></p-skeleton>
+    <p-skeleton width="17rem" height="145px"></p-skeleton>
+  </div>
+</ng-template>

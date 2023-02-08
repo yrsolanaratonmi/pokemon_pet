@@ -19,7 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPokemonPipe } from './pipes/filter-pokemon.pipe';
 import { InputTextModule } from 'primeng/inputtext';
 import { SkeletonModule } from 'primeng/skeleton';
-import { SkeletonComponent } from './components/pokemon-list/skeleton/skeleton.component';
 import { MultipleRenderDirective } from './directives/multiple-render.directive';
 import { CommonModule } from '@angular/common';
 
@@ -33,7 +32,6 @@ import { CommonModule } from '@angular/common';
     CarouselComponent,
     PokemonSearchComponent,
     FilterPokemonPipe,
-    SkeletonComponent,
     MultipleRenderDirective,
   ],
   imports: [
