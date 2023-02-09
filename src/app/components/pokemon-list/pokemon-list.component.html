@@ -2,7 +2,7 @@
   <div
     *ngFor="
       let pokemon of pokemons
-        | slice : startElement : startElement + rows
+        | slice : startElement : startElement + 21
         | filterPokemon : (searchValue$ | async)
     "
     style="max-height: 145px"

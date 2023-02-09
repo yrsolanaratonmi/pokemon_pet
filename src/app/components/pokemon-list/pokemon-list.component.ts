@@ -8,10 +8,10 @@ import {
   Output,
 } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
-import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
-import { PokemonService } from '../../services/pokemon.service';
+import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 import { UnifiedResponse } from '../../dto/unifiedResponse.dto';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'pokemon-list',
@@ -25,8 +25,6 @@ export class PokemonListComponent implements OnInit {
   public pokemons: Array<SinglePokemonInfo> = [];
 
   public startElement: number = 0;
-
-  public rows: number = 21;
 
   public searchValue$: Observable<any>;
 
@@ -57,8 +55,7 @@ export class PokemonListComponent implements OnInit {
   }
 
   public paginate(event: any) {
-    this.rows = event.rows;
-    this.startElement = event.first * event.rows;
+    this.startElement = event.first;
   }
 
   public setIndex(name: string) {
