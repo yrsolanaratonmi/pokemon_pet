@@ -6,6 +6,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { PokemonTypes } from '../../dto/pokemonTypes';
 import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 
 @Component({
@@ -21,6 +22,8 @@ export class PokemonCardComponent {
   @Input() activePokemon: string;
 
   @Output() clickFunc = new EventEmitter<string>();
+
+  public pokemonTypes: any = PokemonTypes;
 
   public setIndex(name: string) {
     this.clickFunc.emit(name);

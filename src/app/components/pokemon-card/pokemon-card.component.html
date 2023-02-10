@@ -20,10 +20,14 @@
     />
   </ng-template>
   <div class="container">
-    <div *ngFor="let ability of pokemon.abilities | slice : 0 : 2">
+    <div *ngFor="let type of pokemon.types | slice : 0 : 2">
       <p-chip
-        [label]="ability.ability.name | upperCaseLetter"
-        styleClass="mr-2 custom-color"
+        [label]="type.type.name | upperCaseLetter"
+        [style]="{
+          'margin-right': '0px',
+          background: pokemonTypes[type.type.name],
+          color: 'white'
+        }"
       ></p-chip>
     </div>
   </div>

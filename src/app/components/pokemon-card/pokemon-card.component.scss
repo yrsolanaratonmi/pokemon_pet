@@ -37,9 +37,6 @@ img {
   margin: 0;
 }
 
-::ng-deep .p-chip.custom-color {
-  border: 2px solid rgb(88, 214, 141);
-}
 :host ::ng-deep .p-chip .p-chip-text {
   font-size: 14px;
 }
