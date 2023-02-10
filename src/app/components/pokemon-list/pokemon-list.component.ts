@@ -56,6 +56,10 @@ export class PokemonListComponent implements OnInit {
 
   public paginate(event: any) {
     this.startElement = event.first;
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 
   public setIndex(name: string) {
