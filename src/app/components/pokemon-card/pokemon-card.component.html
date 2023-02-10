@@ -1,6 +1,11 @@
 <p-card
   [header]="pokemon.name | upperCaseLetter"
-  [style]="{ width: '17rem', padding: '1rem' }"
+  [style]="{
+    width: '17rem',
+    padding: '1rem',
+    display: 'flex',
+    'flex-direction': 'column'
+  }"
   (click)="setIndex(pokemon.name)"
   [styleClass]="activePokemon === pokemon.name ? 'active' : ''"
   class="card"
