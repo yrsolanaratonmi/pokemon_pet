@@ -21,6 +21,7 @@
 </div>
 
 <p-paginator
+  *ngIf="!loader && pokemons.length"
   (onPageChange)="paginate($event)"
   [rows]="21"
   [totalRecords]="pokemons.length"
@@ -34,5 +35,7 @@
 </ng-template>
 
 <ng-template #empty>
-  <div>nothing found</div>
+  <div class="empty-search__container">
+    <span>Тут ничего нет...</span>
+  </div>
 </ng-template>
