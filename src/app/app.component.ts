@@ -10,6 +10,5 @@ export class AppComponent {
 
   public set(name: string) {
     this.name = name;
-    console.log(this.name);
   }
 }

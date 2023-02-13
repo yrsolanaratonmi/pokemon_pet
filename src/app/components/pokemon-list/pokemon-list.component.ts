@@ -4,6 +4,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  OnChanges,
   OnInit,
   Output,
 } from '@angular/core';
@@ -19,8 +20,12 @@ import { PokemonService } from '../../services/pokemon.service';
   styleUrls: ['./pokemon-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PokemonListComponent implements OnInit {
-  constructor(public pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
+export class PokemonListComponent implements OnInit, OnChanges {
+  constructor(
+    public pokemonService: PokemonService,
+    private ref: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   public pokemons: Array<SinglePokemonInfo> = [];
 
@@ -32,26 +37,20 @@ export class PokemonListComponent implements OnInit {
 
   public loader: boolean = false;
 
+  private constantPokemons: Array<SinglePokemonInfo> = [];
+
+  public search: string = '';
+
   @Output() clickFunc = new EventEmitter<string>();
 
   ngOnInit(): void {
-    this.loader = true;
-    this.pokemonService
-      .getPokemons()
-      .pipe(
-        map((pokemonsData: AllPokemonsData) => {
-          pokemonsData.results.forEach((el: UnifiedResponse) => {
-            this.pokemonService
-              .getSinglePokemon(el.url)
-              .pipe(tap(() => this.ref.markForCheck()))
-              .subscribe((res) => {
-                this.pokemons.push(res);
-              });
-          });
-        }),
-      )
-      .subscribe(() => (this.loader = false));
     this.searchValue$ = this.pokemonService.search$;
+    this.searchValue$.subscribe((res) => this.filterPokemons(res));
+    this.setPokemons();
+  }
+
+  ngOnChanges(): void {
+    this.filterPokemons(this.search);
   }
 
   public paginate(event: any) {
@@ -68,5 +67,33 @@ export class PokemonListComponent implements OnInit {
 
   public setActive(name: string) {
     this.activePokemon = name;
+  }
+
+  private setPokemons() {
+    this.loader = true;
+    this.pokemonService
+      .getPokemons()
+      .pipe(
+        map((pokemonsData: AllPokemonsData) => {
+          pokemonsData.results.forEach((el: UnifiedResponse) => {
+            this.pokemonService
+              .getSinglePokemon(el.url)
+              .pipe(tap(() => this.ref.markForCheck()))
+              .subscribe((res) => {
+                this.pokemons.push(res);
+                this.constantPokemons.push(res);
+              });
+          });
+        }),
+      )
+      .subscribe(() => (this.loader = false));
+  }
+
+  private filterPokemons(searchString: string) {
+    this.pokemons = this.constantPokemons;
+    this.loader = true;
+    this.pokemons = this.pokemons.filter((el) => el.name.includes(searchString));
+    this.loader = false;
+    this.cdr.detectChanges();
   }
 }

@@ -1,17 +1,17 @@
+<div *ngIf="pokemons.length === 0 && !loader">
+  <ng-container *ngTemplateOutlet="empty"></ng-container>
+</div>
+
 <div class="container" *ngIf="!loader">
   <div
-    *ngFor="
-      let pokemon of pokemons
-        | filterPokemon : (searchValue$ | async)
-        | slice : startElement : startElement + 21
-    "
+    *ngFor="let pokemon of pokemons | slice : startElement : startElement + 21"
     style="max-height: 145px"
   >
     <pokemon-card
       [pokemon]="pokemon"
-      [activePokemon]="activePokemon"
       (clickFunc)="setIndex($event)"
       (click)="setActive(pokemon.name)"
+      activePokemon
     ></pokemon-card>
   </div>
 </div>
@@ -31,4 +31,8 @@
     <p-skeleton width="70px" height="70px" borderRadius="50%" styleClass="round"></p-skeleton>
     <p-skeleton width="17rem" height="145px"></p-skeleton>
   </div>
+</ng-template>
+
+<ng-template #empty>
+  <div>nothing found</div>
 </ng-template>
