@@ -17,7 +17,6 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
 import { CarouselComponent } from './components/pokemon-full/carousel/carousel.component';
 import { PokemonFullComponent } from './components/pokemon-full/pokemon-full.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
-import { PokemonSearchComponent } from './components/pokemon-search/pokemon-search.component';
 import { MultipleRenderDirective } from './directives/multiple-render.directive';
 import { FilterPokemonPipe } from './pipes/filter-pokemon.pipe';
 import { UpperCasePipe } from './pipes/upper-case.pipe';
@@ -30,7 +29,6 @@ import { UpperCasePipe } from './pipes/upper-case.pipe';
     UpperCasePipe,
     PokemonFullComponent,
     CarouselComponent,
-    PokemonSearchComponent,
     FilterPokemonPipe,
     MultipleRenderDirective,
   ],

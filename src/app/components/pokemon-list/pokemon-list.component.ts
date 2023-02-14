@@ -4,11 +4,10 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  OnChanges,
   OnInit,
   Output,
 } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { fromEvent, map, Subject, tap } from 'rxjs';
 import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
 import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 import { UnifiedResponse } from '../../dto/unifiedResponse.dto';
@@ -20,7 +19,7 @@ import { PokemonService } from '../../services/pokemon.service';
   styleUrls: ['./pokemon-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PokemonListComponent implements OnInit, OnChanges {
+export class PokemonListComponent implements OnInit {
   constructor(
     public pokemonService: PokemonService,
     private ref: ChangeDetectorRef,
@@ -31,7 +30,7 @@ export class PokemonListComponent implements OnInit, OnChanges {
 
   public startElement: number = 0;
 
-  public searchValue$: Observable<any>;
+  public searchValue$: Subject<string> = new Subject();
 
   public activePokemon: string = '';
 
@@ -39,18 +38,14 @@ export class PokemonListComponent implements OnInit, OnChanges {
 
   private constantPokemons: Array<SinglePokemonInfo> = [];
 
-  public search: string = '';
-
   @Output() clickFunc = new EventEmitter<string>();
 
   ngOnInit(): void {
-    this.searchValue$ = this.pokemonService.search$;
+    fromEvent(document.querySelector('input'), 'input').subscribe((event: any) =>
+      this.searchValue$.next(event.target.value),
+    );
     this.searchValue$.subscribe((res) => this.filterPokemons(res));
     this.setPokemons();
-  }
-
-  ngOnChanges(): void {
-    this.filterPokemons(this.search);
   }
 
   public paginate(event: any) {
