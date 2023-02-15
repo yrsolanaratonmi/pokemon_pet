@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -6,11 +7,11 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { fromEvent, map, Subject, tap } from 'rxjs';
-import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
+import { map, Observable, tap } from 'rxjs';
 import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
-import { UnifiedResponse } from '../../dto/unifiedResponse.dto';
+import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
 import { PokemonService } from '../../services/pokemon.service';
+import { UnifiedResponse } from '../../dto/unifiedResponse.dto';
 
 @Component({
   selector: 'pokemon-list',
@@ -21,49 +22,24 @@ import { PokemonService } from '../../services/pokemon.service';
 export class PokemonListComponent implements OnInit {
   constructor(
     public pokemonService: PokemonService,
-    private ref: ChangeDetectorRef,
-    private cdr: ChangeDetectorRef
+    private ref: ChangeDetectorRef
   ) {}
 
   public pokemons: Array<SinglePokemonInfo> = [];
 
-  public startElement = 0;
+  public startElement: number = 0;
 
-  public searchValue$: Subject<string> = new Subject();
+  public rows: number = 21;
 
-  public activePokemon = '';
+  public searchValue$: Observable<any>;
 
-  public loader = false;
+  public activePokemon: string = '';
 
-  private constantPokemons: Array<SinglePokemonInfo> = [];
+  public loader: boolean = false;
 
   @Output() clickFunc = new EventEmitter<string>();
 
   ngOnInit(): void {
-    fromEvent(document.querySelector('input') as any, 'input').subscribe(
-      (event: any) => this.searchValue$.next(event.target.value)
-    );
-    this.searchValue$.subscribe((res) => this.filterPokemons(res));
-    this.setPokemons();
-  }
-
-  public paginate(event: any) {
-    this.startElement = event.first;
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }
-
-  public setIndex(name: string) {
-    this.clickFunc.emit(name);
-  }
-
-  public setActive(name: string) {
-    this.activePokemon = name;
-  }
-
-  private setPokemons() {
     this.loader = true;
     this.pokemonService
       .getPokemons()
@@ -75,21 +51,24 @@ export class PokemonListComponent implements OnInit {
               .pipe(tap(() => this.ref.markForCheck()))
               .subscribe((res) => {
                 this.pokemons.push(res);
-                this.constantPokemons.push(res);
               });
           });
         })
       )
       .subscribe(() => (this.loader = false));
+    this.searchValue$ = this.pokemonService.search$;
   }
 
-  private filterPokemons(searchString: string) {
-    this.pokemons = this.constantPokemons;
-    this.loader = true;
-    this.pokemons = this.pokemons.filter((el) =>
-      el.name.includes(searchString)
-    );
-    this.loader = false;
-    this.cdr.detectChanges();
+  public paginate(event: any) {
+    this.rows = event.rows;
+    this.startElement = event.first * event.rows;
+  }
+
+  public setIndex(name: string) {
+    this.clickFunc.emit(name);
+  }
+
+  public setActive(name: string) {
+    this.activePokemon = name;
   }
 }
