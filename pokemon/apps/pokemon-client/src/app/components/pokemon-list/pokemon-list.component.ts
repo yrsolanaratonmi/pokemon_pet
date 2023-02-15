@@ -71,4 +71,14 @@ export class PokemonListComponent implements OnInit {
   public setActive(name: string) {
     this.activePokemon = name;
   }
+
+  private filterPokemons(searchString: string) {
+    this.pokemons = this.constantPokemons;
+    this.loader = true;
+    this.pokemons = this.pokemons.filter((el) =>
+      el.name.includes(searchString)
+    );
+    this.loader = false;
+    this.ref.detectChanges();
+  }
 }
