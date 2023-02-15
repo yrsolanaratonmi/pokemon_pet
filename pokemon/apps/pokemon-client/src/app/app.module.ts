@@ -19,6 +19,7 @@ import { PokemonListComponent } from './components/pokemon-list/pokemon-list.com
 import { MultipleRenderDirective } from './directives/multiple-render.directive';
 import { FilterPokemonPipe } from './pipes/filter-pokemon.pipe';
 import { UpperCasePipe } from './pipes/upper-case.pipe';
+import { PokemonService } from './services/pokemon.service';
 
 @NgModule({
   declarations: [
