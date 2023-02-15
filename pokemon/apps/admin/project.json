@@ -3,7 +3,7 @@
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/admin/src",
-  "prefix": "pokemon",
+  "prefix": "",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -16,7 +16,12 @@
         "tsConfig": "apps/admin/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
-        "styles": ["apps/admin/src/styles.scss"],
+        "styles": [
+          "apps/admin/src/styles.scss",
+          "node_modules/primeicons/primeicons.css",
+          "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+          "node_modules/primeng/resources/primeng.min.css"
+        ],
         "scripts": []
       },
       "configurations": {

@@ -1,7 +1,12 @@
 <p-card
   *ngIf="singlePokemon"
   [header]="singlePokemon.name | upperCaseLetter"
-  [style]="{ width: '17rem', 'margin-bottom': '7em', padding: '1rem', height: '85vh' }"
+  [style]="{
+    width: '17rem',
+    'margin-bottom': '7em',
+    padding: '1rem',
+    height: '85vh'
+  }"
   styleClass="card"
 >
   <ng-template pTemplate="header">
@@ -30,7 +35,12 @@
     </div>
 
     <div class="experience">
-      <p-tag styleClass="mr-2" icon="pi pi-info-circle" severity="info" [value]="'Exp:'"></p-tag>
+      <p-tag
+        styleClass="mr-2"
+        icon="pi pi-info-circle"
+        severity="info"
+        [value]="'Exp:'"
+      ></p-tag>
       <p-tag
         styleClass="mr-2"
         severity="success"
@@ -49,7 +59,9 @@
       </div>
     </div>
 
-    <div style="display: flex; gap: 5px; flex-wrap: wrap; justify-content: center">
+    <div
+      style="display: flex; gap: 5px; flex-wrap: wrap; justify-content: center"
+    >
       <div *ngFor="let level of singlePokemon.stats">
         <div class="chip">
           <div class="chip_element">

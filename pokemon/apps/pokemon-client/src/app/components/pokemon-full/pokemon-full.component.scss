@@ -1,4 +1,4 @@
-@use '../../color-variables.scss' as colorVar;
+@use '../../../../../../libs/color-variables.scss' as colorVar;
 
 .container {
   display: flex;
@@ -31,8 +31,9 @@
       padding: 3px 10px;
       border: 1px solid colorVar.$box-shadow;
       border-radius: 5px;
-      box-shadow: 0 2px 1px -1px colorVar.$box-shadow, 0 1px 1px 0 colorVar.$box-shadow,
-        0 1px 3px colorVar.$box-shadow, 0 2px 8px 0 colorVar.$box-shadow;
+      box-shadow: 0 2px 1px -1px colorVar.$box-shadow,
+        0 1px 1px 0 colorVar.$box-shadow, 0 1px 3px colorVar.$box-shadow,
+        0 2px 8px 0 colorVar.$box-shadow;
     }
   }
   .chip {
@@ -43,8 +44,9 @@
     justify-content: center;
     align-items: center;
     gap: 2.5px;
-    box-shadow: 0 2px 1px -1px colorVar.$box-shadow, 0 1px 1px 0 colorVar.$box-shadow,
-      0 1px 3px colorVar.$box-shadow, 0 2px 8px 0 colorVar.$box-shadow;
+    box-shadow: 0 2px 1px -1px colorVar.$box-shadow,
+      0 1px 1px 0 colorVar.$box-shadow, 0 1px 3px colorVar.$box-shadow,
+      0 2px 8px 0 colorVar.$box-shadow;
     display: flex;
     .chip_element {
       width: 25px;
@@ -62,8 +64,9 @@
 
 :host ::ng-deep .p-card {
   background: colorVar.$background;
-  box-shadow: 0 2px 1px -1px colorVar.$box-shadow, 0 1px 1px 0 colorVar.$box-shadow,
-    0 1px 3px colorVar.$box-shadow, 0 2px 8px 0 colorVar.$box-shadow;
+  box-shadow: 0 2px 1px -1px colorVar.$box-shadow,
+    0 1px 1px 0 colorVar.$box-shadow, 0 1px 3px colorVar.$box-shadow,
+    0 2px 8px 0 colorVar.$box-shadow;
   transform: scale(1.05);
 }
 

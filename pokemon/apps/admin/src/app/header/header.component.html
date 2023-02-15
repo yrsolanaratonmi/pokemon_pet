@@ -1,0 +1,11 @@
+<div class="header">
+  <div *ngFor="let item of commonArray">
+    <ng-container
+      *ngTemplateOutlet="buttonsArray; context: { $implicit: item }"
+    ></ng-container>
+  </div>
+</div>
+
+<ng-template #buttonsArray let-item>
+  <p-tabMenu [model]="item"></p-tabMenu>
+</ng-template>
