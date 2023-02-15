@@ -4,7 +4,6 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  OnChanges,
   OnInit,
   Output,
 } from '@angular/core';
@@ -21,11 +20,7 @@ import { PokemonService } from '../../services/pokemon.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonListComponent implements OnInit {
-  constructor(
-    public pokemonService: PokemonService,
-    private ref: ChangeDetectorRef,
-    private cdr: ChangeDetectorRef,
-  ) {}
+  constructor(public pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
 
   public pokemons: Array<SinglePokemonInfo> = [];
 
@@ -90,6 +85,6 @@ export class PokemonListComponent implements OnInit {
     this.loader = true;
     this.pokemons = this.pokemons.filter((el) => el.name.includes(searchString));
     this.loader = false;
-    this.cdr.detectChanges();
+    this.ref.detectChanges();
   }
 }
