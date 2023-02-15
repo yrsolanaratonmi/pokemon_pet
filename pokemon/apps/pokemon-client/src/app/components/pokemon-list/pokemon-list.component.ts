@@ -21,11 +21,15 @@ import { PokemonService } from '../../services/pokemon.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonListComponent implements OnInit {
+<<<<<<< HEAD:pokemon/apps/pokemon-client/src/app/components/pokemon-list/pokemon-list.component.ts
   constructor(
     public pokemonService: PokemonService,
     private ref: ChangeDetectorRef,
     private cdr: ChangeDetectorRef
   ) {}
+=======
+  constructor(public pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
+>>>>>>> bff864b184adeef7796ce66a856a4f8a5cddad30:src/app/components/pokemon-list/pokemon-list.component.ts
 
   public pokemons: Array<SinglePokemonInfo> = [];
 
