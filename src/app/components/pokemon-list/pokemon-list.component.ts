@@ -4,10 +4,12 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  OnChanges,
   OnInit,
   Output,
 } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { fromEvent, map, Subject, tap } from 'rxjs';
+import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
 import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
 import { PokemonService } from '../../services/pokemon.service';
@@ -20,23 +22,51 @@ import { UnifiedResponse } from '../../dto/unifiedResponse.dto';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonListComponent implements OnInit {
-  constructor(public pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
+  constructor(
+    public pokemonService: PokemonService,
+    private ref: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   public pokemons: Array<SinglePokemonInfo> = [];
 
   public startElement: number = 0;
 
-  public rows: number = 21;
-
-  public searchValue$: Observable<any>;
+  public searchValue$: Subject<string> = new Subject();
 
   public activePokemon: string = '';
 
   public loader: boolean = false;
 
+  private constantPokemons: Array<SinglePokemonInfo> = [];
+
   @Output() clickFunc = new EventEmitter<string>();
 
   ngOnInit(): void {
+    fromEvent(document.querySelector('input'), 'input').subscribe((event: any) =>
+      this.searchValue$.next(event.target.value),
+    );
+    this.searchValue$.subscribe((res) => this.filterPokemons(res));
+    this.setPokemons();
+  }
+
+  public paginate(event: any) {
+    this.startElement = event.first;
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  public setIndex(name: string) {
+    this.clickFunc.emit(name);
+  }
+
+  public setActive(name: string) {
+    this.activePokemon = name;
+  }
+
+  private setPokemons() {
     this.loader = true;
     this.pokemonService
       .getPokemons()
