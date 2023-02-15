@@ -1,3 +1,5 @@
+@use '../../color-variables.scss' as colorVar;
+
 .card {
   .container {
     display: flex;
@@ -9,10 +11,10 @@
 
 :host ::ng-deep .p-card {
   &:hover {
-    background: rgb(220, 250, 233);
+    background: colorVar.$background;
+    box-shadow: 0 2px 1px -1px colorVar.$box-shadow, 0 1px 1px 0 colorVar.$box-shadow,
+      0 1px 3px colorVar.$box-shadow, 0 2px 8px 0 colorVar.$box-shadow;
     transform: scale(1.05);
-    box-shadow: 0 2px 1px -1px rgb(88, 214, 141), 0 1px 1px 0 rgb(88, 214, 141),
-      0 1px 3px 0 rgb(88, 214, 141), 0 2px 8px 0 rgb(88, 214, 141);
   }
 }
 img {
@@ -41,9 +43,9 @@ img {
   font-size: 14px;
 }
 :host ::ng-deep .p-card.active {
-  background: rgb(220, 250, 233);
-  box-shadow: 0 2px 1px -1px rgb(88, 214, 141), 0 1px 1px 0 rgb(88, 214, 141),
-    0 1px 3px 0 rgb(88, 214, 141), 0 2px 8px 0 rgb(88, 214, 141);
+  background: colorVar.$background;
+  box-shadow: 0 2px 1px -1px colorVar.$box-shadow, 0 1px 1px 0 colorVar.$box-shadow,
+    0 1px 3px colorVar.$box-shadow, 0 2px 8px 0 colorVar.$box-shadow;
 }
 
 :host ::ng-deep .p-card.p-component {
