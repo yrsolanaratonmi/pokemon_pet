@@ -8,7 +8,6 @@
     <carousel [picsArray]="picsArray"></carousel>
   </ng-template>
   <div class="container">
-
     <div class="abilities">
       <p-tag
         styleClass="mr-2"
@@ -17,11 +16,15 @@
         [value]="'Abilities:'"
       ></p-tag>
       <div
-        *ngFor="let ability of singlePokemon.abilities |slice: 0 : 2"
+        *ngFor="let ability of singlePokemon.abilities | slice : 0 : 2"
         style="display: flex; align-items: center"
       >
         <div>
-          <p-tag styleClass="mr-2" severity="success" [value]="ability.ability.name | upperCaseLetter"></p-tag>
+          <p-tag
+            styleClass="mr-2"
+            severity="success"
+            [value]="ability.ability.name | upperCaseLetter"
+          ></p-tag>
         </div>
       </div>
     </div>
@@ -50,10 +53,10 @@
       <div *ngFor="let level of singlePokemon.stats">
         <div class="chip">
           <div class="chip_element">
-            {{level.stat.name | slice: 0 : 3}}
+            {{ level.stat.name | slice : 0 : 3 }}
           </div>
           <div class="chip_element">
-            {{level.base_stat}}
+            {{ level.base_stat }}
           </div>
         </div>
       </div>

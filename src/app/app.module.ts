@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,10 +13,10 @@ import { PaginatorModule } from 'primeng/paginator';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TagModule } from 'primeng/tag';
 import { AppComponent } from './app.component';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { CarouselComponent } from './components/pokemon-full/carousel/carousel.component';
 import { PokemonFullComponent } from './components/pokemon-full/pokemon-full.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
-import { PokemonSearchComponent } from './components/pokemon-search/pokemon-search.component';
 import { MultipleRenderDirective } from './directives/multiple-render.directive';
 import { FilterPokemonPipe } from './pipes/filter-pokemon.pipe';
 import { UpperCasePipe } from './pipes/upper-case.pipe';
@@ -28,7 +29,6 @@ import { UpperCasePipe } from './pipes/upper-case.pipe';
     UpperCasePipe,
     PokemonFullComponent,
     CarouselComponent,
-    PokemonSearchComponent,
     FilterPokemonPipe,
     MultipleRenderDirective,
   ],

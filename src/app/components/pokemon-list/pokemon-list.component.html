@@ -1,17 +1,17 @@
+<div *ngIf="pokemons.length === 0 && !loader">
+  <ng-container *ngTemplateOutlet="empty"></ng-container>
+</div>
+
 <div class="container" *ngIf="!loader">
   <div
-    *ngFor="
-      let pokemon of pokemons
-        | slice : startElement : startElement + rows
-        | filterPokemon : (searchValue$ | async)
-    "
+    *ngFor="let pokemon of pokemons | slice : startElement : startElement + 21"
     style="max-height: 145px"
   >
     <pokemon-card
       [pokemon]="pokemon"
-      [activePokemon]="activePokemon"
       (clickFunc)="setIndex($event)"
       (click)="setActive(pokemon.name)"
+      activePokemon
     ></pokemon-card>
   </div>
 </div>
@@ -21,6 +21,7 @@
 </div>
 
 <p-paginator
+  *ngIf="!loader && pokemons.length"
   (onPageChange)="paginate($event)"
   [rows]="21"
   [totalRecords]="pokemons.length"
@@ -30,5 +31,11 @@
   <div style="display: flex; flex-direction: column" *multipleRender="21">
     <p-skeleton width="70px" height="70px" borderRadius="50%" styleClass="round"></p-skeleton>
     <p-skeleton width="17rem" height="145px"></p-skeleton>
+  </div>
+</ng-template>
+
+<ng-template #empty>
+  <div class="empty-search__container">
+    <span>Тут ничего нет...</span>
   </div>
 </ng-template>

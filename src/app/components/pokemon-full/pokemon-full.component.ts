@@ -32,14 +32,11 @@ export class PokemonFullComponent implements OnChanges {
         .pipe(tap(() => this.ref.markForCheck()))
         .subscribe((res) => {
           this.singlePokemon = res;
-          console.log(res);
           delete this.singlePokemon.sprites.versions;
           if (this.picsArray.length !== 0) {
             this.picsArray = [];
           }
-          console.log(this.singlePokemon.sprites);
           this.getValues(this.singlePokemon.sprites);
-          console.log(this.picsArray);
         });
     }
   }

@@ -1,4 +1,8 @@
-<pokemon-search></pokemon-search>
+<span class="p-input-icon-left">
+  <i class="pi pi-search"></i>
+  <input type="text" pInputText placeholder="Search" />
+</span>
+
 <div style="display: flex">
   <pokemon-list (clickFunc)="set($event)"></pokemon-list>
   <pokemon-full [name]="name"></pokemon-full>

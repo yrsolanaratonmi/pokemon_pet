@@ -1,6 +1,11 @@
 <p-card
   [header]="pokemon.name | upperCaseLetter"
-  [style]="{ width: '17rem', padding: '1rem' }"
+  [style]="{
+    width: '17rem',
+    padding: '1rem',
+    display: 'flex',
+    'flex-direction': 'column'
+  }"
   (click)="setIndex(pokemon.name)"
   [styleClass]="activePokemon === pokemon.name ? 'active' : ''"
   class="card"
@@ -20,10 +25,14 @@
     />
   </ng-template>
   <div class="container">
-    <div *ngFor="let ability of pokemon.abilities | slice : 0 : 2">
+    <div *ngFor="let type of pokemon.types | slice : 0 : 2">
       <p-chip
-        [label]="ability.ability.name | upperCaseLetter"
-        styleClass="mr-2 custom-color"
+        [label]="type.type.name | upperCaseLetter"
+        [style]="{
+          'margin-right': '0px',
+          background: pokemonTypes[type.type.name],
+          color: 'white'
+        }"
       ></p-chip>
     </div>
   </div>

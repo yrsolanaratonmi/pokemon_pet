@@ -10,9 +10,28 @@
 
 ::ng-deep .p-paginator {
   background: transparent;
+  padding: 50px;
 }
 
 :host ::ng-deep .p-skeleton.round {
   margin-bottom: -35px;
   margin-left: 100px;
+}
+
+.empty-search__container {
+  display: flex;
+  width: 857px;
+  height: 20%;
+  margin: 50px 0 0 20px;
+  justify-content: center;
+  background: rgb(220, 250, 233);
+  opacity: 0.5;
+  border-radius: 20px;
+  padding: 50px;
+  span {
+    border-radius: 20px;
+    padding: 15px 30px;
+    background: rgb(183, 250, 211);
+    font-size: 32px;
+  }
 }

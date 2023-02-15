@@ -11,9 +11,8 @@ import {
 import { fromEvent, map, Subject, tap } from 'rxjs';
 import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
 import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
-import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
-import { PokemonService } from '../../services/pokemon.service';
 import { UnifiedResponse } from '../../dto/unifiedResponse.dto';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'pokemon-list',
@@ -78,24 +77,19 @@ export class PokemonListComponent implements OnInit {
               .pipe(tap(() => this.ref.markForCheck()))
               .subscribe((res) => {
                 this.pokemons.push(res);
+                this.constantPokemons.push(res);
               });
           });
         }),
       )
       .subscribe(() => (this.loader = false));
-    this.searchValue$ = this.pokemonService.search$;
   }
 
-  public paginate(event: any) {
-    this.rows = event.rows;
-    this.startElement = event.first * event.rows;
-  }
-
-  public setIndex(name: string) {
-    this.clickFunc.emit(name);
-  }
-
-  public setActive(name: string) {
-    this.activePokemon = name;
+  private filterPokemons(searchString: string) {
+    this.pokemons = this.constantPokemons;
+    this.loader = true;
+    this.pokemons = this.pokemons.filter((el) => el.name.includes(searchString));
+    this.loader = false;
+    this.cdr.detectChanges();
   }
 }
