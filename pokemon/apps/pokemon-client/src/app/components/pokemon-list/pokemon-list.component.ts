@@ -1,10 +1,8 @@
-/* eslint-disable import/named */
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  OnChanges,
   OnInit,
   Output,
 } from '@angular/core';
@@ -21,32 +19,27 @@ import { PokemonService } from '../../services/pokemon.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PokemonListComponent implements OnInit {
-<<<<<<< HEAD:pokemon/apps/pokemon-client/src/app/components/pokemon-list/pokemon-list.component.ts
   constructor(
     public pokemonService: PokemonService,
-    private ref: ChangeDetectorRef,
-    private cdr: ChangeDetectorRef
+    private ref: ChangeDetectorRef
   ) {}
-=======
-  constructor(public pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
->>>>>>> bff864b184adeef7796ce66a856a4f8a5cddad30:src/app/components/pokemon-list/pokemon-list.component.ts
 
   public pokemons: Array<SinglePokemonInfo> = [];
 
-  public startElement: number = 0;
+  public startElement = 0;
 
   public searchValue$: Subject<string> = new Subject();
 
-  public activePokemon: string = '';
+  public activePokemon = '';
 
-  public loader: boolean = false;
+  public loader = false;
 
   private constantPokemons: Array<SinglePokemonInfo> = [];
 
   @Output() clickFunc = new EventEmitter<string>();
 
   ngOnInit(): void {
-    fromEvent(document.querySelector('input'), 'input').subscribe(
+    fromEvent(document.querySelector('input') as any, 'input').subscribe(
       (event: any) => this.searchValue$.next(event.target.value)
     );
     this.searchValue$.subscribe((res) => this.filterPokemons(res));
@@ -96,6 +89,6 @@ export class PokemonListComponent implements OnInit {
       el.name.includes(searchString)
     );
     this.loader = false;
-    this.cdr.detectChanges();
+    this.ref.detectChanges();
   }
 }

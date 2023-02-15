@@ -1,4 +1,3 @@
-/* eslint-disable import/named */
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -23,7 +22,10 @@ export class PokemonFullComponent implements OnChanges {
 
   public picsArray: Array<any> = [];
 
-  constructor(private pokemonService: PokemonService, private ref: ChangeDetectorRef) {}
+  constructor(
+    private pokemonService: PokemonService,
+    private ref: ChangeDetectorRef
+  ) {}
 
   ngOnChanges(): void {
     if (this.name) {
@@ -42,7 +44,7 @@ export class PokemonFullComponent implements OnChanges {
   }
 
   private getValues(smth: any) {
-    for (let key in smth) {
+    for (const key in smth) {
       if (typeof smth[key] === 'object') {
         this.getValues(smth[key]);
       } else {
