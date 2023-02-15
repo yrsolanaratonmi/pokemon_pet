@@ -11,7 +11,7 @@
       [pokemon]="pokemon"
       (clickFunc)="setIndex($event)"
       (click)="setActive(pokemon.name)"
-      activePokemon
+      [activePokemon]="activePokemon"
     ></pokemon-card>
   </div>
 </div>

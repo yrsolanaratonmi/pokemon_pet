@@ -19,7 +19,7 @@ import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
 export class PokemonCardComponent {
   @Input() pokemon: SinglePokemonInfo;
 
-  @Input() set activePokemon(value: string) {}
+  @Input() activePokemon: string;
 
   @Output() clickFunc = new EventEmitter<string>();
 
