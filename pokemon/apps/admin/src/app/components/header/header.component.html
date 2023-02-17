@@ -1,0 +1,26 @@
+<div class="header">
+  <div *ngFor="let item of commonArray">
+    <ng-container
+      *ngTemplateOutlet="buttons; context: { $implicit: item }"
+    ></ng-container>
+  </div>
+</div>
+
+<ng-template #buttons let-array>
+  <div style="display: flex; gap: 10px">
+    <div *ngFor="let item of array">
+      <p-card
+        [header]="item.label"
+        (click)="item.clickFunc()"
+        [style]="{
+          padding: '1rem',
+          display: 'flex',
+          height: '50px',
+          'justify-content': 'center'
+        }"
+      >
+        <i [className]="item.icon"></i>
+      </p-card>
+    </div>
+  </div>
+</ng-template>
