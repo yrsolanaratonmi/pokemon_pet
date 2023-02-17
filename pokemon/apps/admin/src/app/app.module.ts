@@ -7,10 +7,10 @@ import { CardModule } from 'primeng/card';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import { ColorsComponent } from './components/colors/colors.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { PokemonsListComponent } from './components/pokemons-list/pokemons-list.component';
-import { ColorsComponent } from './components/colors/colors.component';
 @NgModule({
   declarations: [
     AppComponent,
