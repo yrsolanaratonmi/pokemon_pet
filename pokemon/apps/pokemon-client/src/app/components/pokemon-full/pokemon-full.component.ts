@@ -6,7 +6,7 @@ import {
   OnChanges,
 } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
+import { SinglePokemonInfo } from '../../../../../../libs/dto/singlePokemonInfo.dto';
 import { PokemonService } from '../../services/pokemon.service';
 
 @Component({

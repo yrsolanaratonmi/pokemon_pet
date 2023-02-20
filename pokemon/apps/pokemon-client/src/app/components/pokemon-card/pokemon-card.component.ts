@@ -6,8 +6,8 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { PokemonTypes } from '../../dto/pokemonTypes';
-import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
+import { PokemonTypes } from '../../../../../../libs/dto/pokemonTypes.dto';
+import { SinglePokemonInfo } from '../../../../../../libs/dto/singlePokemonInfo.dto';
 
 @Component({
   selector: 'pokemon-card',

@@ -7,9 +7,9 @@ import {
   Output,
 } from '@angular/core';
 import { fromEvent, map, Subject, tap } from 'rxjs';
-import { AllPokemonsData } from '../../dto/allPokemonsData.dto';
-import { SinglePokemonInfo } from '../../dto/singlePokemonInfo.dto';
-import { UnifiedResponse } from '../../dto/unifiedResponse.dto';
+import { AllPokemonsData } from '../../../../../../libs/dto/allPokemonsData.dto';
+import { SinglePokemonInfo } from '../../../../../../libs/dto/singlePokemonInfo.dto';
+import { UnifiedResponse } from '../../../../../../libs/dto/unifiedResponse.dto';
 import { PokemonService } from '../../services/pokemon.service';
 
 @Component({

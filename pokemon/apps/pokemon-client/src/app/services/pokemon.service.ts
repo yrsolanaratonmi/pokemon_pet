@@ -2,8 +2,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AllPokemonsData } from '../dto/allPokemonsData.dto';
-import { SinglePokemonInfo } from '../dto/singlePokemonInfo.dto';
+import { AllPokemonsData } from '../../../../../libs/dto/allPokemonsData.dto';
+import { SinglePokemonInfo } from '../../../../../libs/dto/singlePokemonInfo.dto';
 
 @Injectable({
   providedIn: 'root',

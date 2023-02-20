@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  .p-datatable {
+    width: 700px;
+    margin-left: 250px;
+    .type__column {
+      width: 400px;
+    }
+    .color__column {
+      width: 60px;
+    }
+  }
+}
