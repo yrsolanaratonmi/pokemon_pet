@@ -16,8 +16,6 @@ export class ColorsComponent {
   public colors = Object.entries(PokemonTypes);
 
   public setColor(type: string, color: string) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     PokemonTypes[type] = color;
     console.log(PokemonTypes);
   }
