@@ -6,6 +6,7 @@ import {
 import { PokemonTypes } from '../../../../../../libs/dto/pokemonTypes.dto';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'colors',
   templateUrl: './colors.component.html',
   styleUrls: ['./colors.component.scss'],

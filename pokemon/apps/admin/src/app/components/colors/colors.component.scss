@@ -1,15 +1,14 @@
 .container {
   display: flex;
   justify-content: center;
+}
 
-  .p-datatable {
-    width: 700px;
-    margin-left: 250px;
-    .type__column {
-      width: 400px;
-    }
-    .color__column {
-      width: 60px;
-    }
-  }
+tbody {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+td {
+  height: 100%;
+  width: 100%;
 }
