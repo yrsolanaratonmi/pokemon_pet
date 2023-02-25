@@ -59,19 +59,20 @@
       </div>
     </div>
 
-    <div
-      style="display: flex; gap: 5px; flex-wrap: wrap; justify-content: center"
-    >
-      <div *ngFor="let level of singlePokemon.stats">
-        <div class="chip">
-          <div class="chip_element">
-            {{ level.stat.name | slice : 0 : 3 }}
-          </div>
-          <div class="chip_element">
-            {{ level.base_stat }}
-          </div>
-        </div>
-      </div>
-    </div>
+    <button
+      pButton
+      type="button"
+      (click)="showDialog()"
+      icon="pi pi-info-circle"
+      label="Show stats"
+    ></button>
   </div>
 </p-card>
+
+<p-dialog [modal]="true" [(visible)]="display" [style]="{ width: '50vw' }">
+  <p-chart
+    type="polarArea"
+    [data]="stats"
+    [style]="{ width: '100%' }"
+  ></p-chart>
+</p-dialog>

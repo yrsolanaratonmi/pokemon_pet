@@ -22,6 +22,26 @@ export class PokemonFullComponent implements OnChanges {
 
   public picsArray: Array<any> = [];
 
+  public stats = {
+    datasets: [
+      {
+        data: [],
+        backgroundColor: [
+          '#42A5F5',
+          '#66BB6A',
+          '#FFA726',
+          '#26C6DA',
+          '#7E57C2',
+          'red',
+        ],
+        label: '',
+      },
+    ],
+    labels: [],
+  };
+
+  public display = false;
+
   constructor(
     private pokemonService: PokemonService,
     private ref: ChangeDetectorRef
@@ -39,8 +59,17 @@ export class PokemonFullComponent implements OnChanges {
             this.picsArray = [];
           }
           this.getValues(this.singlePokemon.sprites);
+          this.stats.labels = []
+          this.stats.datasets[0].data = []
+          res.stats.forEach((el) => {
+            this.stats.labels.push(el.stat.name as never);
+            this.stats.datasets[0].data.push(el.base_stat as never);
+          });
         });
     }
+  }
+  showDialog() {
+    this.display = true;
   }
 
   private getValues(smth: any) {
