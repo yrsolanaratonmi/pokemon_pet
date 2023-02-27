@@ -9,6 +9,16 @@ import { tap } from 'rxjs/operators';
 import { SinglePokemonInfo } from '../../../../../../libs/dto/singlePokemonInfo.dto';
 import { PokemonService } from '../../services/pokemon.service';
 
+interface Element {
+  data: Array<number>;
+  backgroundColor: Array<string>;
+  label: string;
+}
+
+interface Stats {
+  datasets: Array<Element>;
+  labels: Array<string>;
+}
 @Component({
   selector: 'pokemon-full',
   templateUrl: './pokemon-full.component.html',
@@ -22,7 +32,7 @@ export class PokemonFullComponent implements OnChanges {
 
   public picsArray: Array<any> = [];
 
-  public stats = {
+  public stats: Stats = {
     datasets: [
       {
         data: [],
@@ -40,7 +50,7 @@ export class PokemonFullComponent implements OnChanges {
     labels: [],
   };
 
-  public display = false;
+  public isModal = false;
 
   constructor(
     private pokemonService: PokemonService,
@@ -49,27 +59,12 @@ export class PokemonFullComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.name) {
-      this.pokemonService
-        .getSinglePokemon('https://pokeapi.co/api/v2/pokemon/' + this.name)
-        .pipe(tap(() => this.ref.markForCheck()))
-        .subscribe((res) => {
-          this.singlePokemon = res;
-          delete this.singlePokemon.sprites.versions;
-          if (this.picsArray.length !== 0) {
-            this.picsArray = [];
-          }
-          this.getValues(this.singlePokemon.sprites);
-          this.stats.labels = []
-          this.stats.datasets[0].data = []
-          res.stats.forEach((el) => {
-            this.stats.labels.push(el.stat.name as never);
-            this.stats.datasets[0].data.push(el.base_stat as never);
-          });
-        });
+      this.getSinglePokemonAndSetData();
     }
   }
+
   showDialog() {
-    this.display = true;
+    this.isModal = true;
   }
 
   private getValues(smth: any) {
@@ -80,5 +75,27 @@ export class PokemonFullComponent implements OnChanges {
         this.picsArray.push(smth[key]);
       }
     }
+  }
+
+  private getSinglePokemonAndSetData() {
+    this.pokemonService
+      .getSinglePokemon('https://pokeapi.co/api/v2/pokemon/' + this.name)
+      .pipe(tap(() => this.ref.markForCheck()))
+      .subscribe((res) => {
+        this.singlePokemon = res;
+        console.log(this.singlePokemon);
+        delete this.singlePokemon.sprites.versions;
+        if (this.picsArray.length !== 0) {
+          this.picsArray = [];
+        }
+        this.getValues(this.singlePokemon.sprites);
+        this.stats.labels = [];
+        this.stats.datasets[0].data = [];
+        for (const el of res.stats) {
+          const { name } = el.stat;
+          this.stats.labels.push(name);
+          this.stats.datasets[0].data.push(el.base_stat);
+        }
+      });
   }
 }
